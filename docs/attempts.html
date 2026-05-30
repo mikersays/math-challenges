@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Attempts to Solve It | P vs NP</title>
+  <meta name="description" content="What happened when we threw swarms of expert AI agents at P vs NP: nine genuine proof attempts across two rounds, each adversarially checked. A plain-language summary and the technical detail.">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="brand" href="index.html" aria-label="P versus NP home">
+        <span class="brand-mark" aria-hidden="true">P?</span>
+        <span>P vs NP</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#question">Question</a></li>
+        <li><a href="index.html#barriers">Barriers</a></li>
+        <li><a href="approaches.html">Approaches</a></li>
+        <li><a aria-current="page" href="attempts.html">Our attempts</a></li>
+        <li><a class="nav-button" href="https://github.com/mikersays/math-challenges" rel="noopener">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-hero" aria-labelledby="page-title">
+      <p class="eyebrow">A documented brute-force effort</p>
+      <h1 id="page-title">We tried hard to solve it. Here is exactly how we failed.</h1>
+      <p>
+        We pointed swarms of expert AI agents at P vs NP and asked them to actually
+        attempt a proof &mdash; not to summarize the field, but to push for a solution.
+        Across two rounds they produced <strong>nine genuine proof attempts</strong>.
+        Every one of them was independently attacked by skeptics and ruled broken.
+        This page documents that effort honestly, first in plain language, then in detail.
+      </p>
+    </section>
+
+    <section class="notice-panel" aria-labelledby="honesty-title">
+      <h2 id="honesty-title">The honest headline first</h2>
+      <p>
+        <strong>We did not solve P vs NP.</strong> Nobody has. It remains an open
+        Millennium Prize problem. What follows is not a proof and contains no proof.
+        Its value is the opposite of a triumphant announcement: a precise, externally
+        checked record of <em>why</em> every modern line of attack stops where it does.
+        A well-documented dead end is the real product here.
+      </p>
+    </section>
+
+    <!-- ===================== LAY SUMMARY ===================== -->
+    <section class="section" aria-labelledby="lay-title">
+      <div class="section-head">
+        <p class="eyebrow">In plain language</p>
+        <h2 id="lay-title">What we did, without the jargon</h2>
+        <p>
+          Imagine a vault that has resisted the world's best safecrackers for fifty
+          years. We did not bring a smarter safecracker. We brought a whole crew, told
+          each member to try a different tool, and hired a second crew whose only job was
+          to prove the first crew wrong.
+        </p>
+      </div>
+
+      <div class="concept-grid">
+        <article class="concept-card">
+          <h3><span class="label label-blue">1</span> Many tries at once</h3>
+          <p>
+            Instead of one attempt, we ran many in parallel &mdash; each an expert agent
+            taking a different angle of attack on the problem at the same time.
+          </p>
+        </article>
+        <article class="concept-card">
+          <h3><span class="label label-green">2</span> Built-in skeptics</h3>
+          <p>
+            Every attempt was handed to a panel of critics whose job was to break it:
+            checking the logic, the numbers, the references, and whether it secretly
+            assumed what it was trying to prove.
+          </p>
+        </article>
+        <article class="concept-card">
+          <h3><span class="label label-red">3</span> An honest referee</h3>
+          <p>
+            A neutral judge weighed each attempt against its critics and recorded a
+            verdict. No attempt was allowed to grade its own homework.
+          </p>
+        </article>
+      </div>
+
+      <div class="formula-panel" style="border-left-color: var(--red);">
+        <p style="margin-bottom:0.6rem;"><strong>The result, in one breath:</strong></p>
+        <p style="margin-bottom:0;">
+          All nine attempts failed &mdash; and, strikingly, they nearly all failed for the
+          <em>same underlying reason</em>. There is a kind of mathematical "wall" that the
+          known techniques keep running into. Each clever attempt was really just a new
+          disguise for hitting that same wall. When we took our single best attempt and
+          tried to patch the exact spot where it broke, we discovered the patch is
+          <strong>impossible</strong> &mdash; fixing it would require disproving a fact that
+          mathematicians have already proven is true.
+        </p>
+      </div>
+
+      <div class="split-list" style="margin-top:1rem;">
+        <article>
+          <h3>Why couldn't the AI just brute-force it?</h3>
+          <p>
+            Because the obstacle is not a lack of effort, speed, or cleverness &mdash; it
+            is a <em>theorem</em>. Mathematicians have proven that whole families of proof
+            techniques <em>cannot</em> settle this question. A faster or more tireless
+            attempt runs into the same proven barrier; it just gets there sooner.
+          </p>
+        </article>
+        <article>
+          <h3>So was it a waste?</h3>
+          <p>
+            No. We now have a sharper map of the dead ends than we started with: nine
+            attacks, each traced to the precise step where it dies, all checked by
+            independent critics. That is how real progress on hard problems is made
+            &mdash; by ruling things out cleanly and knowing exactly why.
+          </p>
+        </article>
+        <article>
+          <h3>Could anyone ever solve it?</h3>
+          <p>
+            Maybe. It would take a genuinely new idea that slips past <em>all</em> the
+            known barriers at once &mdash; something no one has yet found. Our effort
+            didn't find it, but it did help pin down what such an idea would need to do.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== METHOD ===================== -->
+    <section class="section section-muted" aria-labelledby="method-title">
+      <div class="section-head">
+        <p class="eyebrow">How the swarm worked</p>
+        <h2 id="method-title">Attempt, attack, adjudicate</h2>
+        <p>
+          Each round followed the same adversarial pipeline. The point of the design is
+          that nothing survives unless it survives hostile, independent review.
+        </p>
+      </div>
+
+      <div class="barrier-grid">
+        <article class="barrier-card">
+          <span class="barrier-number">A</span>
+          <h3>Attempt</h3>
+          <p>
+            Independent expert-persona agents each push one strategy as far as it
+            honestly goes, labeling every step as either an established result or an
+            unverified novel claim, and flagging their own weakest link.
+          </p>
+        </article>
+        <article class="barrier-card">
+          <span class="barrier-number">B</span>
+          <h3>Audit &amp; red-team</h3>
+          <p>
+            A dedicated barrier auditor checks the three classical obstructions, and a
+            multi-lens red-team attacks rigor, the literature, the actual numbers, and
+            hidden circularity &mdash; defaulting to "broken" unless a step is airtight.
+          </p>
+        </article>
+        <article class="barrier-card">
+          <span class="barrier-number">C</span>
+          <h3>Adjudicate &amp; repair</h3>
+          <p>
+            A neutral referee rules on each attempt and scores how broken it is. In round
+            two, the least-broken attempt got a dedicated repair team &mdash; whose fix
+            was then itself re-attacked.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== TECHNICAL: ROUND 1 ===================== -->
+    <section class="section" aria-labelledby="round1-title">
+      <div class="section-head">
+        <p class="eyebrow">Technical &middot; Round one</p>
+        <h2 id="round1-title">Four attacks on the most promising frontiers</h2>
+        <p>
+          The first round took the four research directions generally considered most
+          likely to eventually crack the problem. Each was attacked by a three-lens
+          red-team. <strong>All four were ruled broken, 3/3.</strong>
+        </p>
+      </div>
+
+      <div class="approach-stack">
+        <section class="approach-card">
+          <div class="approach-meta">
+            <span class="approach-type">Algorithmic method</span>
+            <span class="approach-state state-broken">Broken &middot; 3/3</span>
+          </div>
+          <h2>Scaling Williams' method below NEXP</h2>
+          <p>
+            Build a recursive "tower" of the faster-algorithm-implies-lower-bound
+            technique to push it from \(\mathrm{NEXP}\) down toward \(\mathrm{NP}\).
+          </p>
+          <div class="result-box" style="border-left-color: var(--red);">
+            <h3>Where it died</h3>
+            <p>
+              Circularity. The per-rung "glue" cost compounds to \(2^{\Theta(N^2)}\)
+              instead of polynomial, and the only repair is provably equivalent to the
+              separation it was trying to prove &mdash; conservation of difficulty. The
+              easy-witness lever is also information-vacuous at the \(\mathrm{NP}\) scale.
+            </p>
+          </div>
+        </section>
+
+        <section class="approach-card">
+          <div class="approach-meta">
+            <span class="approach-type">Meta-complexity</span>
+            <span class="approach-state state-broken">Broken &middot; 3/3</span>
+          </div>
+          <h2>Hardness magnification via MCSP</h2>
+          <p>
+            Prove a tiny lower bound for a meta-complexity problem and let known
+            magnification theorems amplify it into a breakthrough.
+          </p>
+          <div class="result-box" style="border-left-color: var(--red);">
+            <h3>Where it died</h3>
+            <p>
+              The target quantity is \(O(\log N)\)-Lipschitz, so its Fourier mass sits at
+              low levels &mdash; the opposite of what the argument needs &mdash; and any
+              patched route is blocked by the locality barrier exactly at the magnifiable
+              parameter. The amplifier was sound; the weak bound it needed is forbidden.
+            </p>
+          </div>
+        </section>
+
+        <section class="approach-card">
+          <div class="approach-meta">
+            <span class="approach-type">Geometric Complexity Theory</span>
+            <span class="approach-state state-broken">Broken &middot; 3/3</span>
+          </div>
+          <h2>Multiplicity obstructions for permanent vs determinant</h2>
+          <p>
+            Use representation-theoretic multiplicities (after occurrence obstructions
+            were proven dead) to separate the permanent from the determinant.
+          </p>
+          <div class="result-box" style="border-left-color: var(--red);">
+            <h3>Where it died</h3>
+            <p>
+              The hard half &mdash; a lower bound on the permanent-side multiplicity
+              &mdash; was merely asserted. The "lockstep" problem means the construction
+              that shrinks one side shrinks the other too, pointing against the very
+              inequality it needed.
+            </p>
+          </div>
+        </section>
+
+        <section class="approach-card">
+          <div class="approach-meta">
+            <span class="approach-type">Proof complexity</span>
+            <span class="approach-state state-broken">Broken &middot; 3/3</span>
+          </div>
+          <h2>Proof-complexity generators toward Frege</h2>
+          <p>
+            Construct a hard tautology family forcing a super-polynomial Frege lower
+            bound, which would give \(\mathrm{NP}\ne\mathrm{coNP}\).
+          </p>
+          <div class="result-box" style="border-left-color: var(--red);">
+            <h3>Where it died</h3>
+            <p>
+              A vacuous distinguishing step (the relevant set has vanishing density, so a
+              trivial circuit separates it for free) and a misapplied witnessing theorem.
+              The argument also re-imports an unproven strong circuit lower bound &mdash;
+              the very wall it hoped to bypass.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <div class="status-panel" style="margin-top:1.25rem;">
+        <p style="margin-bottom:0;">
+          <strong>Round-one verdict:</strong> no attempt survived. The one direction the
+          referees flagged as genuinely live and not-yet-circular was scaling the
+          algorithmic method on \(\mathrm{ACC}^0\circ\mathrm{THR}\) &mdash; which became
+          the entire target of round two.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== TECHNICAL: ROUND 2 ===================== -->
+    <section class="section section-muted" aria-labelledby="round2-title">
+      <div class="section-head">
+        <p class="eyebrow">Technical &middot; Round two</p>
+        <h2 id="round2-title">Maximum-rigor assault on the one live lead</h2>
+        <p>
+          We threw everything at the live lead: five independent attempts, each with a
+          dedicated barrier audit, a <strong>five-lens</strong> red-team (barrier, rigor,
+          literature, quantitative, circularity), neutral adjudication, and a repair round
+          on the least-broken attempt. Roughly 42 agents and 2.1M tokens.
+        </p>
+      </div>
+
+      <div class="result-box" style="border-left-color: var(--gold); margin-bottom:1.25rem;">
+        <h3>The unifying finding</h3>
+        <p style="margin-bottom:0;">
+          All five attempts &mdash; and the parent attempt from round one &mdash; die on a
+          single object: the unconditional \(\Theta(\sqrt{n})\) approximate-degree lower
+          bound for threshold functions (Paturi; Nisan&ndash;Szegedy; Sherstov). Each
+          route just meets a different face of it: polynomial degree, sparsity,
+          matrix-multiplication dimension, sign-rank, or core-shell measure. The method
+          <em>conserves</em> the wall rather than defeating it.
+        </p>
+      </div>
+
+      <div class="table-wrap">
+        <table class="attempt-table">
+          <thead>
+            <tr><th scope="col">Attempt</th><th scope="col">Red-team</th><th scope="col">Brokenness</th><th scope="col">Where it died</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Probabilistic polynomials + correlation + matmul</th>
+              <td><span class="verdict-badge">5/5 broken</span></td>
+              <td>7/10 <span class="note">least broken</span></td>
+              <td>Dichotomy lemma vacuous at constant gap; repair proven impossible.</td>
+            </tr>
+            <tr>
+              <th scope="row">GAP-SAT / #SAT derandomization</th>
+              <td><span class="verdict-badge">5/5 broken</span></td>
+              <td>7/10</td>
+              <td>Cross-block threshold join hits the \(\Theta(\sqrt n)\) degree wall; constraints become contradictory.</td>
+            </tr>
+            <tr>
+              <th scope="row">Meta-algorithmic magnification</th>
+              <td><span class="verdict-badge">5/5 broken</span></td>
+              <td>7/10</td>
+              <td>False degree bound; sparsity lands on the wrong side of the threshold.</td>
+            </tr>
+            <tr>
+              <th scope="row">Threshold degree-reduction normal form</th>
+              <td><span class="verdict-badge">5/5 broken</span></td>
+              <td>7/10</td>
+              <td>The enabling "margin-sparsity" lemma is false; the residual restates the target.</td>
+            </tr>
+            <tr>
+              <th scope="row">Easy-witness + win-win</th>
+              <td><span class="verdict-badge">5/5 broken</span></td>
+              <td>9/10 <span class="note">most broken</span></td>
+              <td>Weight-taming lemma is equivalent to the open problem; degree wall kills it anyway.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="notice-panel" style="margin-top:1.25rem; border-left:5px solid var(--red);">
+        <h2>The repair round &mdash; the decisive result</h2>
+        <p>
+          We took the least-broken attempt and tasked a fixer team with repairing the
+          exact failure point. <strong>It could not be repaired.</strong> A genuine fix
+          would require representing threshold functions with \(o(\sqrt n)\) approximate
+          degree &mdash; that is, <em>defeating an unconditional theorem</em>. This is the
+          single most valuable output of the round: the blocker is not a gap to be
+          engineered around, it is a proven wall the technique conserves.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== BOTTOM LINE ===================== -->
+    <section class="status-panel" id="status" aria-labelledby="bottom-title">
+      <p class="eyebrow">Bottom line</p>
+      <h2 id="bottom-title">P vs NP remains open</h2>
+      <p>
+        Two rounds, nine adversarially adjudicated attempts, one repair round, and no
+        survivor. The brute-force effort did not crack the problem; it produced a clean,
+        externally checked map of <em>why</em> the leading techniques stop short.
+      </p>
+      <p style="margin-bottom:0;">
+        The honestly live directions now point <em>away</em> from thresholds &mdash; for
+        example the combinatorial Circuit-SAT channel decoupled from any threshold layer.
+        None currently threatens the P vs NP boundary. Real progress still requires a
+        genuinely new technique that evades all three classical barriers and does not
+        conserve the threshold-degree wall.
+      </p>
+    </section>
+
+    <p class="back-link"><a href="approaches.html">See the broader approach map</a> &middot; <a href="index.html">Back to overview</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Educational summary for the P vs NP work in this repository.
+      Status: <strong>open</strong> as of <time datetime="2026-05-30">May 30, 2026</time>.
+    </p>
+    <p><a href="https://github.com/mikersays/math-challenges" rel="noopener">Source on GitHub</a></p>
+  </footer>
+</body>
+</html>

@@ -680,6 +680,78 @@ p {
   font-weight: 800;
 }
 
+/* Attempts page: broken-state pill, verdict badges, results table */
+.approach-state.state-broken {
+  color: var(--red);
+  background: color-mix(in srgb, var(--red) 14%, transparent);
+}
+
+.verdict-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  color: var(--red);
+  background: color-mix(in srgb, var(--red) 14%, transparent);
+  font-size: 0.76rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.note {
+  display: inline-block;
+  margin-left: 0.3rem;
+  color: var(--faint);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-small);
+}
+
+.attempt-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+  font-size: 0.95rem;
+}
+
+.attempt-table th,
+.attempt-table td {
+  padding: 0.8rem 0.9rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+
+.attempt-table thead th {
+  color: var(--faint);
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--surface-strong);
+}
+
+.attempt-table tbody th {
+  font-weight: 750;
+  color: var(--ink);
+}
+
+.attempt-table tbody td {
+  color: var(--muted);
+}
+
+.attempt-table tbody tr:last-child th,
+.attempt-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
 .site-footer {
   width: min(var(--content), calc(100% - 32px));
   margin: 0 auto;
