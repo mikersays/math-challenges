@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>P vs NP &mdash; The Million-Dollar Question</title>
+  <meta name="description" content="An accessible, barrier-aware introduction to the P vs NP problem: what it asks, why it matters, the known proof barriers, and the most promising research directions." />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- MathJax for rendering LaTeX -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html">P&nbsp;<span class="brand-vs">vs</span>&nbsp;NP</a>
+      <ul class="nav-links">
+        <li><a href="#what">What is it?</a></li>
+        <li><a href="#why">Why it matters</a></li>
+        <li><a href="#barriers">Barriers</a></li>
+        <li><a href="approaches.html">Approaches</a></li>
+        <li><a class="nav-cta" href="https://github.com/mikersays/math-challenges" rel="noopener">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <p class="eyebrow">Clay Mathematics Institute &middot; Millennium Prize Problem</p>
+        <h1 id="hero-title">Is <span class="hl">P</span> equal to <span class="hl">NP</span>?</h1>
+        <p class="hero-sub">
+          The most famous open question in computer science asks whether every problem
+          whose solution can be <em>checked</em> quickly can also be <em>solved</em> quickly.
+          A definitive answer is worth <strong>one million dollars</strong>&mdash;and would
+          reshape cryptography, optimization, and our understanding of what computers can do.
+        </p>
+        <p class="hero-formula">\[ \mathrm{P} \overset{?}{=} \mathrm{NP} \]</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="approaches.html">Explore the approaches</a>
+          <a class="btn btn-ghost" href="#what">Start with the basics</a>
+        </div>
+        <p class="status-pill" role="status">
+          <span class="dot" aria-hidden="true"></span>
+          Status: <strong>OPEN</strong> &mdash; unresolved since it was formalized in 1971.
+        </p>
+      </div>
+    </section>
+
+    <!-- WHAT IS P vs NP -->
+    <section id="what" class="section" aria-labelledby="what-title">
+      <div class="container">
+        <h2 id="what-title">What is P vs NP?</h2>
+        <p class="lead">
+          P and NP are two <em>classes</em> of decision problems&mdash;questions with a
+          yes/no answer. The conjecture concerns how the difficulty of <strong>finding</strong>
+          an answer compares to the difficulty of <strong>verifying</strong> one.
+        </p>
+
+        <div class="card-grid">
+          <article class="card">
+            <h3><span class="tag tag-p">P</span> Polynomial time</h3>
+            <p>
+              The class of problems an ordinary (deterministic) computer can
+              <strong>solve</strong> in time bounded by a polynomial in the input
+              size&mdash;e.g. \(n^2\) or \(n^3\) steps. These are the problems we
+              consider efficiently solvable.
+            </p>
+            <p class="eg">Example: Is a number even? Is there a path between two cities?</p>
+          </article>
+
+          <article class="card">
+            <h3><span class="tag tag-np">NP</span> Nondeterministic polynomial time</h3>
+            <p>
+              The class of problems for which a proposed solution&mdash;a
+              <em>certificate</em>&mdash;can be <strong>verified</strong> in polynomial
+              time. Finding the solution might be hard, but checking a candidate is easy.
+            </p>
+            <p class="eg">Example: Given a Sudoku grid and a filled-in answer, confirming it is valid is quick.</p>
+          </article>
+
+          <article class="card">
+            <h3><span class="tag tag-npc">NP-complete</span> The hardest in NP</h3>
+            <p>
+              The "hardest" problems in NP: every problem in NP reduces to them in
+              polynomial time. If <em>any single</em> NP-complete problem has a fast
+              algorithm, then <strong>all</strong> of NP does&mdash;and \(\mathrm{P}=\mathrm{NP}\).
+            </p>
+            <p class="eg">Example: Boolean satisfiability (SAT), the travelling salesman decision problem, graph colouring.</p>
+          </article>
+        </div>
+
+        <div class="callout">
+          <h3>The question, precisely</h3>
+          <p>
+            Every problem in P is in NP (if you can solve it quickly, you can certainly
+            check it quickly), so \(\mathrm{P} \subseteq \mathrm{NP}\). The open question
+            is whether that containment is <em>strict</em>:
+          </p>
+          <p class="formula">
+            \[ \text{Does } \mathrm{P} = \mathrm{NP}, \quad\text{or is}\quad \mathrm{P} \subsetneq \mathrm{NP}\,? \]
+          </p>
+          <p>
+            Equivalently, in the formal language-theoretic statement: does there exist a
+            language that is verifiable in polynomial time but not decidable in
+            polynomial time? Writing \(\mathrm{P} = \bigcup_{k} \mathrm{DTIME}(n^k)\) and
+            \(\mathrm{NP} = \bigcup_{k} \mathrm{NTIME}(n^k)\), the conjecture is:
+          </p>
+          <p class="formula">\[ \mathrm{P} \;\ne\; \mathrm{NP}. \]</p>
+          <p class="muted">
+            Most researchers believe \(\mathrm{P} \ne \mathrm{NP}\), but this is a matter
+            of evidence, not proof. \(\mathrm{P} = \mathrm{NP}\) has <em>not</em> been ruled out.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY IT MATTERS -->
+    <section id="why" class="section section-alt" aria-labelledby="why-title">
+      <div class="container">
+        <h2 id="why-title">Why it matters</h2>
+        <p class="lead">
+          This is not an abstract curiosity. The answer touches the foundations of
+          security, the limits of automation, and the nature of creativity itself.
+        </p>
+
+        <div class="card-grid">
+          <article class="card">
+            <h3>Cryptography</h3>
+            <p>
+              Modern encryption (RSA, elliptic-curve schemes, digital signatures) rests on
+              problems believed to be hard&mdash;easy to verify, infeasible to break. If
+              \(\mathrm{P}=\mathrm{NP}\) with a practical algorithm, much of today's public-key
+              cryptography would collapse overnight.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Optimization &amp; discovery</h3>
+            <p>
+              Logistics, chip design, protein folding, scheduling, and theorem-proving are
+              riddled with NP-hard problems. A fast general solver would turn many
+              intractable searches&mdash;and arguably much of mathematical
+              discovery&mdash;into routine computation.
+            </p>
+          </article>
+
+          <article class="card highlight-card">
+            <h3>The $1,000,000 prize</h3>
+            <p>
+              P vs NP is one of the seven <strong>Millennium Prize Problems</strong> named
+              by the Clay Mathematics Institute in 2000. A correct, peer-reviewed
+              resolution carries a <strong>one-million-dollar</strong> award&mdash;a fitting
+              bounty for a question this consequential.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- KNOWN BARRIERS -->
+    <section id="barriers" class="section" aria-labelledby="barriers-title">
+      <div class="container">
+        <h2 id="barriers-title">Known barriers</h2>
+        <p class="lead">
+          Why is this so hard? Decades of work have produced three formal
+          <em>barrier theorems</em>&mdash;meta-results proving that broad families of
+          proof techniques <strong>cannot possibly</strong> settle the question. Any valid
+          proof must evade all of them simultaneously.
+        </p>
+
+        <ol class="barrier-list">
+          <li>
+            <h3>Relativization <span class="cite">Baker&ndash;Gill&ndash;Solovay, 1975</span></h3>
+            <p>
+              There exist oracles \(A\) and \(B\) with \(\mathrm{P}^{A} = \mathrm{NP}^{A}\)
+              but \(\mathrm{P}^{B} \ne \mathrm{NP}^{B}\). Any technique that works the same
+              way relative to <em>any</em> oracle&mdash;such as plain diagonalization and
+              simulation&mdash;cannot decide the question, because the answer changes
+              depending on the oracle.
+            </p>
+          </li>
+          <li>
+            <h3>Natural proofs <span class="cite">Razborov&ndash;Rudich, 1994</span></h3>
+            <p>
+              Most combinatorial circuit lower-bound arguments are "natural": broad and
+              constructive. Razborov and Rudich showed that a natural proof of strong
+              lower bounds would break the very pseudorandom generators those bounds
+              assume to exist&mdash;so, under standard cryptographic assumptions, natural
+              proofs cannot separate P from NP.
+            </p>
+          </li>
+          <li>
+            <h3>Algebrization <span class="cite">Aaronson&ndash;Wigderson, 2008</span></h3>
+            <p>
+              Arithmetization and interactive-proof techniques&mdash;which defeated
+              relativization&mdash;were shown to "algebrize," extending to algebraic
+              oracle settings. Algebrizing methods, too, are provably insufficient. It is
+              not even known whether algebrization is the <em>last</em> barrier.
+            </p>
+          </li>
+        </ol>
+
+        <p class="barrier-takeaway">
+          Together these results rule out essentially the entire classical
+          toolkit&mdash;diagonalization, arithmetization, combinatorial circuit bounds,
+          and brute-force search. We still have <strong>no</strong> super-polynomial lower
+          bound for any explicit NP problem on a general basis (the record is roughly
+          \(5n\) gates). Real progress demands a genuinely new, structure-exploiting
+          technique that is at once <em>non-relativizing</em>, <em>non-natural</em>, and
+          <em>non-algebrizing</em>.
+        </p>
+      </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="section cta-section" aria-labelledby="cta-title">
+      <div class="container cta-inner">
+        <h2 id="cta-title">Go deeper</h2>
+        <p>
+          We have mapped the frontier in detail&mdash;Williams' algorithmic method,
+          meta-complexity and hardness magnification, Geometric Complexity Theory, algebraic
+          lower bounds beyond the depth-4 chasm, and proof-complexity generators. None
+          resolves the problem, but together they show precisely where the mathematics runs out.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="approaches.html">Read the detailed approaches</a>
+          <a class="btn btn-ghost" href="https://github.com/mikersays/math-challenges" rel="noopener">View the repository</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>
+        An educational resource on the P vs NP problem.
+        Status as of <time datetime="2026-05-29">May 2026</time>: <strong>open</strong>.
+      </p>
+      <p class="muted">
+        Built for clarity, not as a claim of resolution. Content reflects the consensus
+        that P vs NP remains unsolved by all known techniques.
+        &middot; <a href="https://github.com/mikersays/math-challenges" rel="noopener">Source on GitHub</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
