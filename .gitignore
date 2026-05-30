@@ -1,0 +1,10 @@
+# Claude Code local state — scheduler locks, transcripts, memory. Never publish.
+.claude/
+
+# Local web-preview / test artifacts
+.playwright-mcp/
+*.tmp
+
+# OS cruft
+.DS_Store
+Thumbs.db
