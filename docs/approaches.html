@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Research Approaches &middot; P vs NP</title>
-  <meta name="description" content="A barrier-aware map of the major research approaches to the P vs NP problem: diagonalization, circuit complexity, natural proofs, proof complexity, Geometric Complexity Theory, algebraic complexity, algebrization, and algorithmic upper bounds.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research Approaches | P vs NP</title>
+  <meta name="description" content="A readable map of major P versus NP research approaches, their best results, and the barriers that currently stop them.">
   <link rel="stylesheet" href="style.css">
   <script>
     window.MathJax = {
@@ -12,306 +12,272 @@
       svg: { fontCache: 'global' }
     };
   </script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <header class="site-header">
-    <div class="wrap">
-      <nav class="site-nav" aria-label="Primary">
-        <a class="brand" href="index.html">P <span aria-hidden="true">vs</span><span class="sr-only"> versus </span> NP</a>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="approaches.html" aria-current="page">Approaches</a></li>
-        </ul>
-      </nav>
-    </div>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="brand" href="index.html" aria-label="P versus NP home">
+        <span class="brand-mark" aria-hidden="true">P?</span>
+        <span>P vs NP</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#question">Question</a></li>
+        <li><a href="index.html#stakes">Stakes</a></li>
+        <li><a href="index.html#barriers">Barriers</a></li>
+        <li><a aria-current="page" href="approaches.html">Approaches</a></li>
+        <li><a class="nav-button" href="https://github.com/mikersays/math-challenges" rel="noopener">GitHub</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main id="main" class="wrap">
-    <article>
-      <header class="page-head">
-        <p class="eyebrow">Research swarm report</p>
-        <h1>Approaches to P vs NP</h1>
-        <p class="lede">
-          Decades of work have produced a rich toolkit for separating complexity classes &mdash;
-          and an equally rich understanding of why each tool stalls. Below is a barrier-aware
-          map of the major research programs the swarm explored, each with an honest summary
-          and its key theorems.
-        </p>
-      </header>
+  <main id="main">
+    <section class="page-hero" aria-labelledby="page-title">
+      <p class="eyebrow">Barrier-aware research map</p>
+      <h1 id="page-title">Where the major approaches stand</h1>
+      <p>
+        The modern P vs NP landscape is not just a list of failed attacks. It is a map of
+        exact obstacles: relativization, natural proofs, algebrization, and model-specific
+        walls that explain why otherwise powerful techniques stop short.
+      </p>
+    </section>
 
-      <section class="callout callout-info" aria-labelledby="orientation">
-        <h2 id="orientation">How to read this map</h2>
+    <section class="notice-panel" aria-labelledby="reading-note-title">
+      <h2 id="reading-note-title">How to read this map</h2>
+      <p>
+        Any known-style proof of \(\mathrm{P}\ne\mathrm{NP}\), and any proof route covered
+        by these frameworks, must avoid relativization, naturalness, and algebrization.
+        The barriers do not prove the problem unsolvable; they identify proof styles that
+        cannot work as direct routes.
+      </p>
+    </section>
+
+    <nav class="toc" aria-label="Approach sections">
+      <a href="#diagonalization">Diagonalization</a>
+      <a href="#circuits">Circuits</a>
+      <a href="#natural-proofs">Natural proofs</a>
+      <a href="#proof-complexity">Proof complexity</a>
+      <a href="#gct">GCT</a>
+      <a href="#algebraic">Algebraic complexity</a>
+      <a href="#algebrization">Algebrization</a>
+      <a href="#algorithms">Algorithms</a>
+      <a href="#status">Status</a>
+    </nav>
+
+    <div class="approach-stack">
+      <section class="approach-card" id="diagonalization" aria-labelledby="diagonalization-title">
+        <div class="approach-meta">
+          <span class="approach-type">Barrier and technique</span>
+          <span class="approach-state">Insufficient alone</span>
+        </div>
+        <h2 id="diagonalization-title">Diagonalization and relativization</h2>
         <p>
-          Any valid resolution of \(\mathsf{P}\) vs \(\mathsf{NP}\) must simultaneously be
-          <strong>non-relativizing</strong>, <strong>non-natural</strong>, and
-          <strong>non-algebrizing</strong>. Three of the sections below describe those barriers
-          themselves; the rest describe techniques and the barriers they run into. No known
-          method clears all three hurdles at once.
+          Diagonalization builds a machine that disagrees with every machine in an enumeration.
+          It powers hierarchy theorems and the undecidability of the halting problem. The problem
+          is that these arguments usually relativize: they continue to hold when all machines get
+          the same oracle.
         </p>
+        <div class="result-box">
+          <h3>Key result</h3>
+          <p>
+            Baker, Gill, and Solovay showed there are oracles \(A\) and \(B\) with
+            \(\mathrm{P}^{A}=\mathrm{NP}^{A}\) and \(\mathrm{P}^{B}\ne\mathrm{NP}^{B}\).
+            Therefore no relativizing proof can settle P vs NP.
+          </p>
+        </div>
       </section>
 
-      <div class="cards">
-
-        <!-- 1 -->
-        <section class="card" id="diagonalization" aria-labelledby="diagonalization-h">
-          <p class="card-tag">Barrier &amp; technique</p>
-          <h2 id="diagonalization-h">Diagonalization &amp; relativization</h2>
-          <p>
-            Diagonalization &mdash; the Cantor/Turing technique of building a machine that
-            disagrees with every machine in an enumeration &mdash; powers the time and space
-            hierarchy theorems and the undecidability of the halting problem. But these proofs
-            <em>relativize</em>: they hold unchanged when every machine is given an oracle.
-            Baker, Gill, and Solovay showed there exist oracles making
-            \(\mathsf{P}^{A}=\mathsf{NP}^{A}\) and others making
-            \(\mathsf{P}^{B}\neq\mathsf{NP}^{B}\), so no relativizing argument can settle the
-            question either way.
-          </p>
-          <div class="theorem">
-            <span class="theorem-label">Key results</span>
-            <p>
-              <strong>Time Hierarchy Theorem</strong> (Hartmanis&ndash;Stearns, 1965):
-              for time-constructible \(f,g\) with \(f \log f = o(g)\),
-              \(\mathsf{DTIME}(f) \subsetneq \mathsf{DTIME}(g)\).
-            </p>
-            <p>
-              <strong>Baker&ndash;Gill&ndash;Solovay</strong> (1975): there exist oracles
-              \(A,B\) with \(\mathsf{P}^{A}=\mathsf{NP}^{A}\) and
-              \(\mathsf{P}^{B}\neq\mathsf{NP}^{B}\). Hence \(\mathsf{P}\) vs \(\mathsf{NP}\)
-              cannot be resolved by any relativizing proof.
-            </p>
-          </div>
-        </section>
-
-        <!-- 2 -->
-        <section class="card" id="circuits" aria-labelledby="circuits-h">
-          <p class="card-tag">Technique</p>
-          <h2 id="circuits-h">Boolean circuit complexity</h2>
-          <p>
-            Rather than bound running time, one bounds the number of gates needed to compute a
-            function on \(n\)-bit inputs. Proving any explicit \(\mathsf{NP}\) function requires
-            super-polynomial circuits would give \(\mathsf{NP}\not\subseteq\mathsf{P/poly}\),
-            and hence \(\mathsf{P}\neq\mathsf{NP}\). Strong unconditional lower bounds exist for
-            <em>restricted</em> classes (monotone, bounded-depth), but for general circuits the
-            best known bound for an explicit function is only about \(5n\) gates.
-          </p>
-          <div class="theorem">
-            <span class="theorem-label">Key results</span>
-            <p>
-              <strong>Razborov</strong> (1985): monotone circuits for the \(k\)-clique problem
-              require size \(n^{\Omega(k)}\), super-polynomial for suitable \(k\).
-            </p>
-            <p>
-              <strong>H&aring;stad&rsquo;s switching lemma</strong> (1986): \(\mathsf{PARITY}\)
-              requires depth-\(d\) \(\mathsf{AC}^0\) circuits of size
-              \(2^{\Omega(n^{1/(d-1)})}\), so \(\mathsf{PARITY}\notin\mathsf{AC}^0\).
-            </p>
-          </div>
-        </section>
-
-        <!-- 3 -->
-        <section class="card" id="natural-proofs" aria-labelledby="natural-proofs-h">
-          <p class="card-tag">Barrier</p>
-          <h2 id="natural-proofs-h">Natural proofs barrier</h2>
-          <p>
-            Razborov and Rudich observed that essentially all known circuit lower bounds share a
-            structure they called <em>natural</em>: a property of truth tables that is
-            <strong>constructive</strong> (efficiently checkable), <strong>large</strong> (held
-            by a random function), and <strong>useful</strong> (fails for easy functions). They
-            proved that a natural property usable against \(\mathsf{P/poly}\) would yield a
-            sub-exponential algorithm breaking strong pseudorandom generators &mdash; objects
-            widely believed to exist. So the very combinatorial style that works on restricted
-            classes cannot, by itself, reach \(\mathsf{P/poly}\).
-          </p>
-          <div class="theorem">
-            <span class="theorem-label">Key result</span>
-            <p>
-              <strong>Razborov&ndash;Rudich</strong> (1994/97): if strong one-way functions
-              (equivalently, exponentially hard pseudorandom generators) exist, then there is no
-              <em>natural</em> property useful against \(\mathsf{P/poly}\). A successful proof
-              must therefore be non-natural &mdash; it must sacrifice constructivity or largeness.
-            </p>
-          </div>
-        </section>
-
-        <!-- 4 -->
-        <section class="card" id="proof-complexity" aria-labelledby="proof-complexity-h">
-          <p class="card-tag">Technique</p>
-          <h2 id="proof-complexity-h">Proof complexity</h2>
-          <p>
-            Proof complexity asks how long the shortest proof of a tautology must be in a given
-            formal system. By the Cook&ndash;Reckhow theorem, \(\mathsf{NP}=\mathsf{coNP}\) iff
-            some propositional proof system is <em>polynomially bounded</em>; ruling out short
-            proofs in ever-stronger systems is a program aimed at that collapse. Strong lower
-            bounds are known for weak systems (resolution, bounded-depth Frege), but no
-            super-polynomial lower bound is known for Frege or Extended Frege &mdash; a notably
-            barrier-resistant frontier.
-          </p>
-          <div class="theorem">
-            <span class="theorem-label">Key results</span>
-            <p>
-              <strong>Cook&ndash;Reckhow</strong> (1979): a polynomially-bounded proof system
-              exists iff \(\mathsf{NP}=\mathsf{coNP}\).
-            </p>
-            <p>
-              <strong>Haken</strong> (1985): resolution refutations of the pigeonhole principle
-              \(\mathrm{PHP}^{n+1}_{n}\) require size \(2^{\Omega(n)}\).
-            </p>
-          </div>
-        </section>
-
-        <!-- 5 -->
-        <section class="card" id="gct" aria-labelledby="gct-h">
-          <p class="card-tag">Technique</p>
-          <h2 id="gct-h">Geometric Complexity Theory (GCT)</h2>
-          <p>
-            Proposed by Mulmuley and Sohoni, GCT recasts lower bounds as questions in algebraic
-            geometry and representation theory: separate the orbit closures of the permanent and
-            determinant by exhibiting a <em>representation-theoretic obstruction</em> &mdash; a
-            symmetry pattern present on one side but not the other. The program is appealing
-            because it aims to be inherently non-natural, but the original
-            <em>occurrence-obstruction</em> form was shown impossible, redirecting effort toward
-            multiplicity obstructions and positive plethysm / Kronecker-coefficient results.
-          </p>
-          <div class="theorem">
-            <span class="theorem-label">Key results</span>
-            <p>
-              <strong>Mulmuley&ndash;Sohoni</strong> (2001/2008): formulated
-              \(\overline{\mathrm{VP}}\neq\overline{\mathrm{VNP}}\) (permanent vs determinant)
-              as separation of group-orbit closures via representation-theoretic obstructions.
-            </p>
-            <p>
-              <strong>B&uuml;rgisser&ndash;Ikenmeyer&ndash;Panova</strong> (2016/2019):
-              <em>occurrence obstructions</em> cannot prove the permanent-versus-determinant
-              lower bound, ruling out the program&rsquo;s original strategy.
-            </p>
-          </div>
-        </section>
-
-        <!-- 6 -->
-        <section class="card" id="algebraic" aria-labelledby="algebraic-h">
-          <p class="card-tag">Technique</p>
-          <h2 id="algebraic-h">Algebraic complexity: VP vs VNP</h2>
-          <p>
-            Valiant&rsquo;s algebraic analogue replaces Boolean circuits with arithmetic circuits
-            over a field, and asks whether the permanent (the canonical \(\mathrm{VNP}\)-complete
-            polynomial) needs super-polynomial circuits. \(\mathrm{VP}\neq\mathrm{VNP}\) is widely
-            seen as a structured stepping stone toward \(\mathsf{P}\neq\mathsf{NP}\). Progress
-            ran into the <em>depth-four chasm</em>: lower bounds for general circuits reduce to
-            depth-4 circuits, but the strongest measure used there &mdash; shifted partial
-            derivatives &mdash; is provably capped just below what is needed.
-          </p>
-          <div class="theorem">
-            <span class="theorem-label">Key results</span>
-            <p>
-              <strong>Valiant</strong> (1979): the permanent is \(\mathrm{VNP}\)-complete; the
-              determinant lies in \(\mathrm{VP}\).
-            </p>
-            <p>
-              <strong>Agrawal&ndash;Vinay; Tavenas; Gupta&ndash;Kamath&ndash;Kayal&ndash;Saptharishi</strong>
-              (2008&ndash;2014): general arithmetic lower bounds reduce to homogeneous depth-4
-              circuits (the &ldquo;chasm at depth four&rdquo;), where near-tight
-              \(n^{\Omega(\sqrt{n})}\) bounds are known but fall short of a separation.
-            </p>
-          </div>
-        </section>
-
-        <!-- 7 -->
-        <section class="card" id="algebrization" aria-labelledby="algebrization-h">
-          <p class="card-tag">Barrier</p>
-          <h2 id="algebrization-h">Algebrization barrier</h2>
-          <p>
-            Arithmetization &mdash; extending Boolean functions to low-degree polynomials &mdash;
-            drove the interactive-proof breakthroughs (\(\mathsf{IP}=\mathsf{PSPACE}\)) and is
-            genuinely non-relativizing. Aaronson and Wigderson distilled its reach into
-            <em>algebrization</em>: arguments where one machine may query a low-degree algebraic
-            extension of the other&rsquo;s oracle. They showed that \(\mathsf{P}\) vs
-            \(\mathsf{NP}\) cannot be settled by algebrizing techniques, extending the relativization
-            barrier to cover the arithmetization toolkit too.
-          </p>
-          <div class="theorem">
-            <span class="theorem-label">Key result</span>
-            <p>
-              <strong>Aaronson&ndash;Wigderson</strong> (2008): there are algebraic oracle
-              extensions relative to which \(\mathsf{P}=\mathsf{NP}\) and others relative to which
-              \(\mathsf{P}\neq\mathsf{NP}\). Any resolution must be non-algebrizing; it is not even
-              known whether algebrization is the final barrier.
-            </p>
-          </div>
-        </section>
-
-        <!-- 8 -->
-        <section class="card" id="algorithms" aria-labelledby="algorithms-h">
-          <p class="card-tag">Technique</p>
-          <h2 id="algorithms-h">Algorithms &amp; upper bounds</h2>
-          <p>
-            The flip side of separation is the search for fast algorithms &mdash; and,
-            paradoxically, fast algorithms can <em>prove</em> lower bounds. Williams&rsquo;
-            algorithmic method turns a faster-than-brute-force Circuit-SAT algorithm into a circuit
-            lower bound; it is provably non-natural and non-relativizing, making it one of the most
-            promising routes (the open challenge is scaling it from \(\mathsf{NEXP}\)/\(\mathsf{ACC}^0\)
-            down to \(\mathsf{NP}\) vs \(\mathsf{P/poly}\)). For SAT itself, every known algorithm
-            remains &ldquo;width-local&rdquo; and degrades toward brute force, consistent with the
-            Strong Exponential Time Hypothesis.
-          </p>
-          <div class="theorem">
-            <span class="theorem-label">Key results</span>
-            <p>
-              <strong>Williams</strong> (2011/2014): \(\mathsf{NEXP}\not\subseteq\mathsf{ACC}^0\),
-              proved by converting a slightly-faster \(\mathsf{ACC}^0\)-SAT algorithm into a lower
-              bound &mdash; the algorithmic method.
-            </p>
-            <p>
-              <strong>Impagliazzo&ndash;Paturi</strong> (SETH, 2001): conjecturally, for every
-              \(\varepsilon&gt;0\) there is a \(k\) such that \(k\)-SAT cannot be solved in
-              \(O(2^{(1-\varepsilon)n})\) time &mdash; brute force is essentially optimal.
-            </p>
-          </div>
-        </section>
-
-      </div>
-
-      <section class="callout callout-status" id="status" aria-labelledby="status-h">
-        <p class="card-tag">Current status</p>
-        <h2 id="status-h">P vs NP remains open</h2>
+      <section class="approach-card" id="circuits" aria-labelledby="circuits-title">
+        <div class="approach-meta">
+          <span class="approach-type">Lower-bound route</span>
+          <span class="approach-state">Powerful in restricted models</span>
+        </div>
+        <h2 id="circuits-title">Boolean circuit complexity</h2>
         <p>
-          The swarm did not resolve \(\mathsf{P}\) vs \(\mathsf{NP}\), and produced no new
-          unconditional separation or collapse. Its value is a precise, barrier-aware map of why
-          every mature technique stalls. The three classical barriers &mdash;
-          <strong>relativization</strong> (Baker&ndash;Gill&ndash;Solovay 1975),
-          <strong>natural proofs</strong> (Razborov&ndash;Rudich 1994), and
-          <strong>algebrization</strong> (Aaronson&ndash;Wigderson 2008) &mdash; together rule out
-          the entire classical toolkit. Any valid proof must be simultaneously non-relativizing,
-          non-natural, and non-algebrizing, and no known technique satisfies all three.
+          Circuit complexity asks how many gates are required to compute a Boolean function.
+          Proving that some explicit language in \(\mathrm{NP}\) requires super-polynomial-size
+          circuits would give \(\mathrm{NP}\not\subseteq\mathrm{P/poly}\), hence
+          \(\mathrm{P}\ne\mathrm{NP}\).
         </p>
-        <p>
-          Concretely: we have no super-polynomial lower bound for any explicit \(\mathsf{NP}\)
-          problem on a general basis (best \(\approx 5n\) gates), none for Frege, none for general
-          arithmetic circuits (stuck near \(n\log n\)); the occurrence-obstruction form of GCT is
-          provably impossible; and every known SAT algorithm degrades to brute force consistent
-          with SETH. \(\mathsf{P}=\mathsf{NP}\) is not refuted &mdash; only judged unlikely on the
-          weight of evidence, since the barriers are symmetric.
-        </p>
-        <p class="status-note">
-          The most plausible paths forward: scaling Williams&rsquo; algorithmic method below
-          \(\mathsf{NEXP}\); a meta-complexity / hardness-magnification result that survives a
-          naturalness re-check; or new positive representation-theory results for the GCT and
-          algebraic routes. The mathematics needed to cross this frontier does not yet exist.
-        </p>
+        <div class="result-box">
+          <h3>Where it stands</h3>
+          <p>
+            Strong unconditional lower bounds are known for restricted circuit classes such as
+            monotone circuits and \(\mathrm{AC}^0\). For unrestricted Boolean circuits, the best
+            explicit-function lower bounds are only linear, about \((5-o(1))n\) gates; no explicit
+            NP language is known to require super-polynomial-size general circuits.
+          </p>
+        </div>
       </section>
 
-      <p class="back-link"><a href="index.html">&larr; Back to the overview</a></p>
-    </article>
+      <section class="approach-card" id="natural-proofs" aria-labelledby="natural-proofs-title">
+        <div class="approach-meta">
+          <span class="approach-type">Barrier</span>
+          <span class="approach-state">Conditional on cryptographic hardness</span>
+        </div>
+        <h2 id="natural-proofs-title">Natural proofs</h2>
+        <p>
+          Razborov and Rudich observed that many circuit lower bounds use a property of truth
+          tables that is constructive, large, and useful against easy functions. They showed that
+          such a property strong enough for general circuits would yield distinguishers against
+          strong pseudorandom function generators.
+        </p>
+        <div class="result-box">
+          <h3>Consequence</h3>
+          <p>
+            If sufficiently strong pseudorandom function generators exist, as follows from
+            appropriately hard one-way functions, natural proofs cannot prove
+            \(\mathrm{NP}\not\subseteq\mathrm{P/poly}\). A successful general circuit lower-bound
+            proof must therefore avoid naturalness, typically by sacrificing constructivity or
+            largeness.
+          </p>
+        </div>
+      </section>
+
+      <section class="approach-card" id="proof-complexity" aria-labelledby="proof-complexity-title">
+        <div class="approach-meta">
+          <span class="approach-type">Proof-size route</span>
+          <span class="approach-state">Stalled at strong systems</span>
+        </div>
+        <h2 id="proof-complexity-title">Proof complexity</h2>
+        <p>
+          Proof complexity studies the shortest proofs of tautologies in formal proof systems.
+          By Cook-Reckhow, \(\mathrm{NP}=\mathrm{coNP}\) exactly when some propositional proof
+          system is polynomially bounded. Lower bounds for increasingly strong systems form a
+          route toward separating complexity classes.
+        </p>
+        <div class="result-box">
+          <h3>Where it stands</h3>
+          <p>
+            Exponential lower bounds are known for weak systems such as resolution. No
+            super-polynomial lower bound is known for Frege or Extended Frege, which is the
+            central bottleneck.
+          </p>
+        </div>
+      </section>
+
+      <section class="approach-card" id="gct" aria-labelledby="gct-title">
+        <div class="approach-meta">
+          <span class="approach-type">Algebraic-geometric route</span>
+          <span class="approach-state">Original obstruction route dead</span>
+        </div>
+        <h2 id="gct-title">Geometric Complexity Theory</h2>
+        <p>
+          GCT recasts lower bounds as questions about orbit closures, symmetry, and
+          representation theory, especially the permanent-versus-determinant problem. It is
+          designed to evade the natural-proofs barrier by using highly structured, non-large
+          properties.
+        </p>
+        <div class="result-box">
+          <h3>Where it stands</h3>
+          <p>
+            The original occurrence-obstruction strategy was ruled out by
+            Buergisser-Ikenmeyer-Panova. Multiplicity obstructions and non-padding
+            reformulations remain possible in principle, but no candidate currently moves the
+            P vs NP boundary, and Boolean transfer remains conditional.
+          </p>
+        </div>
+      </section>
+
+      <section class="approach-card" id="algebraic" aria-labelledby="algebraic-title">
+        <div class="approach-meta">
+          <span class="approach-type">Arithmetic circuit route</span>
+          <span class="approach-state">Needs new measures</span>
+        </div>
+        <h2 id="algebraic-title">Algebraic complexity: VP vs VNP</h2>
+        <p>
+          Valiant's algebraic analogue replaces Boolean circuits with arithmetic circuits and
+          asks whether the permanent, a canonical \(\mathrm{VNP}\)-complete polynomial, needs
+          super-polynomial-size circuits.
+        </p>
+        <div class="result-box">
+          <h3>Where it stands</h3>
+          <p>
+            \(\mathrm{VP}\ne\mathrm{VNP}\) is a structured algebraic analogue and possible
+            stepping stone, but a Boolean \(\mathrm{P}\ne\mathrm{NP}\) consequence currently
+            requires additional GRH or derandomization assumptions. Existing shifted-partial
+            derivative methods appear capped near the depth-four chasm.
+          </p>
+        </div>
+      </section>
+
+      <section class="approach-card" id="algebrization" aria-labelledby="algebrization-title">
+        <div class="approach-meta">
+          <span class="approach-type">Barrier</span>
+          <span class="approach-state">Extends relativization</span>
+        </div>
+        <h2 id="algebrization-title">Algebrization</h2>
+        <p>
+          Arithmetization was the breakthrough behind results such as \(\mathrm{IP}=\mathrm{PSPACE}\).
+          Aaronson and Wigderson showed that many arithmetization-based techniques still
+          algebrize: they work relative to algebraic extensions of oracles.
+        </p>
+        <div class="result-box">
+          <h3>Key result</h3>
+          <p>
+            There are algebraic oracle settings on both sides of P vs NP. Techniques that
+            algebrize therefore cannot settle the problem as direct proof routes.
+          </p>
+        </div>
+      </section>
+
+      <section class="approach-card" id="algorithms" aria-labelledby="algorithms-title">
+        <div class="approach-meta">
+          <span class="approach-type">Upper-bound and lower-bound route</span>
+          <span class="approach-state">Live, but far from NP vs P/poly</span>
+        </div>
+        <h2 id="algorithms-title">Algorithms and upper bounds</h2>
+        <p>
+          A polynomial-time algorithm for an NP-complete problem would prove
+          \(\mathrm{P}=\mathrm{NP}\). Less directly, faster satisfiability algorithms for
+          circuit classes can imply lower bounds through Williams' algorithmic method.
+        </p>
+        <div class="result-box">
+          <h3>Where it stands</h3>
+          <p>
+            Williams' method genuinely evades the natural-proofs and relativization barriers
+            in the known \(\mathrm{NEXP}\not\subseteq\mathrm{ACC}^0\) setting. The open challenge
+            is scaling that style of argument down toward NP and general circuits. Current SAT
+            algorithms still fall far short of a polynomial-time collapse.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <section class="status-panel" id="status" aria-labelledby="status-title">
+      <p class="eyebrow">Current status</p>
+      <h2 id="status-title">P vs NP remains open</h2>
+      <p>
+        The repository's adjudicated proof attempts did not produce a separation or collapse.
+        The reliable output is negative knowledge: a clearer account of where familiar routes
+        fail and which next steps are not already known to be circular.
+      </p>
+      <p>
+        Together, relativization, natural proofs, and algebrization rule out the familiar
+        black-box, arithmetization, and large constructive circuit-invariant approaches as
+        direct routes. They do not rule out every possible proof, and they do not refute
+        \(\mathrm{P}=\mathrm{NP}\).
+      </p>
+      <p>
+        The most concrete live next step surfaced by the red-team round is to push the
+        algorithmic method for \(\mathrm{ACC}^0 \circ \mathrm{THR}\) via combinatorial,
+        non-algebraic Circuit-SAT normal forms. Broader live directions include
+        meta-complexity, hardness magnification, and new GCT or algebraic measures, but none
+        currently moves the P vs NP bound.
+      </p>
+    </section>
+
+    <p class="back-link"><a href="index.html">Back to overview</a></p>
   </main>
 
   <footer class="site-footer">
-    <div class="wrap">
-      <p>An educational resource on the \(\mathsf{P}\) versus \(\mathsf{NP}\) problem. Theorem
-        attributions follow the standard complexity-theory literature.</p>
-    </div>
+    <p>
+      Educational summary for the P vs NP work in this repository.
+      Status: <strong>open</strong> as of <time datetime="2026-05-30">May 30, 2026</time>.
+    </p>
+    <p><a href="https://github.com/mikersays/math-challenges" rel="noopener">Source on GitHub</a></p>
   </footer>
 </body>
 </html>
