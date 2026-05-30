@@ -33,3 +33,18 @@ the swarm. Newest entries at the bottom.
     ACC⁰ ∘ THR via its combinatorial (non-algebraic) Circuit-SAT normal form
     (Chen–Lyu–Williams) — live, non-barriered, non-circular.
   - Full adjudication: see [`attempts/VERDICT.md`](attempts/VERDICT.md).
+
+- 2026-05-30 — **Maximum-rigor assault on the ACC⁰∘THR lead** (lead coordinator).
+  Five independent attempt teams (probabilistic-poly-correlation, easy-witness-winwin,
+  gap-sat-derandomization, meta-algorithmic-magnification, thr-degree-reduction), each
+  with a dedicated barrier auditor + a 5-lens adversarial red-team (barrier / rigor /
+  literature / quantitative / circularity) + neutral adjudication; the least-broken
+  attempt then went through a repair round with re-refutation. ~42 agents, ~2.1M tokens.
+  **All five ruled BROKEN, 5/5 each**, and the repair on the least-broken attempt
+  (probabilistic-poly-correlation, brokenness 7/10) **failed fundamentally**. Unifying
+  finding: every route dies on one object — the unconditional `Θ(√n)` approximate-degree
+  lower bound for threshold functions (Paturi / Nisan–Szegedy / Sherstov) — seen through
+  different lenses (degree / sparsity / matmul inner dimension / sign-rank / core-shell
+  measure); the algorithmic method *conserves* the wall rather than defeating it. P vs NP
+  remains OPEN; this specific lead is now a sharpened, externally-checked dead-end.
+  Full writeup: [`attempts/acc-thr-assault/VERDICT.md`](attempts/acc-thr-assault/VERDICT.md).
