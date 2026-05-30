@@ -67,6 +67,28 @@ referee adjudication. The round-level verdict is in
 step where it died, the barrier that killed it, the salvageable residue, and the
 single most promising next concrete step.
 
+### Round 2 (2026-05-30) — Maximum-rigor assault on the ACC⁰∘THR lead
+
+Five independent attempts on the one direction round 1 flagged as live, each with
+a dedicated barrier audit + a **5-lens** adversarial red-team (barrier / rigor /
+literature / quantitative / circularity) + neutral adjudication, plus a repair
+round on the least-broken attempt. Full writeup:
+[**`attempts/acc-thr-assault/VERDICT.md`**](attempts/acc-thr-assault/VERDICT.md).
+
+| Attempt | File | Red-team | Brokenness |
+|---|---|---|---|
+| Probabilistic-poly + correlation + matmul | [`probabilistic-poly-correlation.md`](attempts/acc-thr-assault/probabilistic-poly-correlation.md) | 5/5 BROKEN | 7/10 (least broken; repair failed) |
+| GAP-SAT / #SAT derandomization | [`gap-sat-derandomization.md`](attempts/acc-thr-assault/gap-sat-derandomization.md) | 5/5 BROKEN | 7/10 |
+| Meta-algorithmic magnification | [`meta-algorithmic-magnification.md`](attempts/acc-thr-assault/meta-algorithmic-magnification.md) | 5/5 BROKEN | 7/10 |
+| THR degree-reduction normal form | [`thr-degree-reduction.md`](attempts/acc-thr-assault/thr-degree-reduction.md) | 5/5 BROKEN | 7/10 |
+| Easy-witness + win-win | [`easy-witness-winwin.md`](attempts/acc-thr-assault/easy-witness-winwin.md) | 5/5 BROKEN | 9/10 (most broken) |
+
+**Round 2 result: all five BROKEN; the repair on the least-broken attempt failed
+fundamentally.** Every route dies on the same object — the unconditional `Θ(√n)`
+approximate-degree lower bound for threshold functions (Paturi / Nisan–Szegedy /
+Sherstov). The lead is now a sharpened, externally-checked dead-end. **P vs NP
+remains OPEN.**
+
 ---
 
 ## Approaches
