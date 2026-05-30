@@ -25,9 +25,11 @@ to be generated the same way and then committed here.
   - `PROGRESS_LOG.md` — append-only, one dated bullet per contribution.
   - `README.md` — index + status tables. `SYNTHESIS.md` — the unified barrier map.
 - **`docs/`** — a self-contained static site (`index.html`, `approaches.html`,
-  `style.css`) intended for GitHub Pages. No framework; math is rendered with the
-  MathJax CDN. This is a *separate audience-facing presentation* — keep it in sync with
-  the research conclusions in `p-np/`, but it is not auto-generated from them.
+  `attempts.html`, `style.css`) intended for GitHub Pages. No framework; math is
+  rendered with the MathJax CDN. `attempts.html` presents the adjudicated proof
+  attempts at two levels (a lay-reader summary and the technical detail). This is a
+  *separate audience-facing presentation* — keep it in sync with the research
+  conclusions in `p-np/`, but it is not auto-generated from them.
 
 ## Commands
 
